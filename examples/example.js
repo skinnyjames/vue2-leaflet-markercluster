@@ -1,28 +1,26 @@
-<template>
-  <v-map :zoom=10 :center="initialLocation">
-    <v-icondefault></v-icondefault>
-    <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-marker-cluster :options="clusterOptions" @l-clusterclick="click()">
-      <v-marker v-for="l in locations" :lat-lng="l.latlng" :icon="icon">
-        <v-popup :content="l.text"></v-popup>
-      </v-marker>
-    </v-marker-cluster>
-  </v-map>
-</template>
-
-<script>
+  import Vue from 'vue/dist/vue.js'
   import Vue2Leaflet from 'vue2-leaflet'
-  import Vue2LeafletMarkercluster from './Vue2LeafletMarkercluster'
+  import Vue2LeafletMarkercluster from '../src/Vue2LeafletMarkercluster'
   import iconUrl from 'leaflet/dist/images/marker-icon.png'
   import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
+    
 
-  function rand(n) {
-    let max = n + 0.1
-    let min = n - 0.1
-    return Math.random() * (max - min) + min;
-  }
-
-  export default {
+  new Vue({
+    el: '#app',
+    template: `
+        <div>
+        STUFF
+        <v-map :zoom=10 :center="initialLocation">
+          <v-icondefault></v-icondefault>
+          <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+          <v-marker-cluster :options="clusterOptions" @l-clusterclick="click()">
+            <v-marker v-for="(l, index) in locations" :key="index" :lat-lng="l.latlng" :icon="icon">
+              <v-popup :content="l.text"></v-popup>
+            </v-marker>
+          </v-marker-cluster>
+        </v-map>
+      </div>
+    `,
     components: {
       'v-map': Vue2Leaflet.Map,
       'v-tilelayer': Vue2Leaflet.TileLayer,
@@ -63,8 +61,13 @@
         });
       }, 5000);
     }
+  })
+
+  function rand(n) {
+    let max = n + 0.1
+    let min = n - 0.1
+    return Math.random() * (max - min) + min;
   }
-</script>
 
 <style>
   @import "~leaflet/dist/leaflet.css";
