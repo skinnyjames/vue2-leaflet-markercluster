@@ -1,6 +1,4 @@
 <template>
-  <div>
-  STUFF
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
@@ -10,11 +8,9 @@
       </v-marker>
     </v-marker-cluster>
   </v-map>
-</div>
 </template>
 
 <script>
-  import Vue from 'vue/dist/vue.js'
   import Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletMarkercluster from '../src/Vue2LeafletMarkercluster'
   import iconUrl from 'leaflet/dist/images/marker-icon.png'
@@ -71,10 +67,7 @@
 </script>
 
 <style module>
-  @import "~leaflet/dist/leaflet.css";
   html, body {
     height: 100%
   }
-  @import "~leaflet.markercluster/dist/MarkerCluster.css";
-  @import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
 </style>
